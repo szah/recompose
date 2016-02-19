@@ -24,7 +24,7 @@ mapProps(
 
 Accepts a function that maps owner props to a new collection of props that are passed to the base component.
 
-`mapProps()` pairs well with functional utility libraries like [lodash-fp](https://github.com/lodash/lodash-fp). For example, Recompose does not come with a `omitProps()` function, but you can build one easily using lodash-fp's `omit()`:
+`mapProps()` pairs well with functional utility libraries like [lodash/fp](https://github.com/lodash/lodash/tree/npm/fp). For example, Recompose does not come with a `omitProps()` function, but you can build one easily using lodash-fp's `omit()`:
 
 ```js
 const omitProps = (keys, BaseComponent) => mapProps(omit(keys), BaseComponent);
@@ -106,7 +106,7 @@ Renames multiple props, using a map of old prop names to new prop names.
 ### `flattenProp()`
 
 ```js
-renameProps(
+flattenProp(
   propName: string,
   BaseComponent: ReactElementType
 ): ReactElementType

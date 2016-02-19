@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import { expect } from 'chai'
 import { compose, withState, branch } from 'recompose'
 import createSpy from 'recompose/createSpy'
-import omit from 'lodash/object/omit'
+import omit from 'lodash/omit'
 import { NullComponent } from './utils'
 
 import { renderIntoDocument } from 'react-addons-test-utils'
@@ -98,9 +98,9 @@ describe('createSpy', () => {
         const Spy = spy(class extends React.Component {
           static propTypes = {
             n: PropTypes.number
-          }
+          };
 
-          n = this.props.n
+          n = this.props.n;
 
           render() {
             return <div />

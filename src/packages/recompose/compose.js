@@ -1,12 +1,12 @@
-import lodashCompose from 'lodash/function/compose'
+import flowRight from 'lodash/flowRight'
 
-// In production, use lodash's compose
-let compose = lodashCompose
+// In production, use lodash's flowRight
+let compose = flowRight
 
 // In development, print warnings when composing higher-order component helpers
 // that have been applied with too few parameters
 if (process.env.NODE_ENV !== 'production') {
-  const getDisplayName = require('./getDisplayName')
+  const getDisplayName = require('./getDisplayName').default
 
   compose = (...funcs) => {
     const needsParameters = []
@@ -42,11 +42,11 @@ if (process.env.NODE_ENV !== 'production') {
           )
         })
 
-        return lodashCompose(...funcs)(BaseComponent)
+        return flowRight(...funcs)(BaseComponent)
       }
     }
 
-    return lodashCompose(...funcs)
+    return flowRight(...funcs)
   }
 }
 

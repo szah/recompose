@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import isFunction from 'lodash/lang/isFunction'
+import isFunction from 'lodash/isFunction'
 import createHelper from './createHelper'
 import createElement from './createElement'
 
@@ -15,11 +15,11 @@ const withReducer = (
       stateValue: isFunction(initialState)
         ? initialState(this.props)
         : initialState
-    }
+    };
 
     dispatch = action => this.setState(({ stateValue }) => ({
       stateValue: reducer(stateValue, action)
-    }))
+    }));
 
     render() {
       return createElement(BaseComponent, {

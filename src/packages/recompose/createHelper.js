@@ -1,4 +1,4 @@
-import curry from 'lodash/function/curry'
+import curry from 'lodash/curry'
 
 const createHelper = (func, helperName, _helperLength, setDisplayName = true) => {
   const helperLength = _helperLength || func.length
@@ -7,7 +7,7 @@ const createHelper = (func, helperName, _helperLength, setDisplayName = true) =>
     // In development, use custom implementation of curry that keeps track of
     // whether enough parameters have been applied. Also adds a `displayName`
     // to the base commponent.
-    const wrapDisplayName = require('./wrapDisplayName')
+    const wrapDisplayName = require('./wrapDisplayName').default
     const apply = (previousArgs, nextArgs) => {
       const args = previousArgs.concat(nextArgs)
       const argsLength = args.length
