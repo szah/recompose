@@ -13,16 +13,20 @@ const createComponent = propsToVdom =>
     // Stream of vdom
     vdom$ = propsToVdom(this.props$)
 
+    didReceiveVdom = false
+
     // Keep track of whether the component has mounted
     componentHasMounted = false
 
     componentWillMount() {
       // Subscribe to child prop changes so we know when to re-render
       this.subscription = this.vdom$.subscribe({
-        next: vdom =>
-          !this.componentHasMounted
+        next: vdom => {
+          this.didReceiveVdom = true
+          return !this.componentHasMounted
             ? this.state = { vdom }
             : this.setState({ vdom })
+        }
       })
     }
 
@@ -45,6 +49,7 @@ const createComponent = propsToVdom =>
     }
 
     render() {
+      if (!this.didReceiveVdom) return null
       return this.state.vdom
     }
   }
