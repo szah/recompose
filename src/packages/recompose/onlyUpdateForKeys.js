@@ -1,11 +1,20 @@
-import pick from 'lodash/pick'
+import _get from 'lodash/get'
+import _set from 'lodash/set'
+import isEqual from 'lodash/isEqual'
 import shouldUpdate from './shouldUpdate'
-import shallowEqual from './shallowEqual'
 import createHelper from './createHelper'
+
+const pick = (object, props) => {
+  const propsArray = Array.isArray(props) ? props : [props]
+  return propsArray.reduce((acc, key) => {
+    _set(acc, key, _get(object, key))
+    return acc
+  }, {})
+}
 
 const onlyUpdateForKeys = propKeys => BaseComponent =>
   shouldUpdate(
-    (props, nextProps) => !shallowEqual(
+    (props, nextProps) => !isEqual(
       pick(nextProps, propKeys),
       pick(props, propKeys)
     )
